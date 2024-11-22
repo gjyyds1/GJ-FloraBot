@@ -1,0 +1,10 @@
+{
+    "PluginName": "e",
+    "DependentLibraries": null,
+    "IsLibraries": false,
+    "PluginIcon": null,
+    "PluginAuthor": "gjyyds1",
+    "MainPyName": "",
+    "PluginDescription": "插件描述",
+    "EnablePlugin": true
+}
