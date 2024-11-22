@@ -1,15 +1,16 @@
-# FloraBot
-**一个新的, 使用 Python 编写的支持插件的 QQBot**
+# GJ-FloraBot
+**FloraBot 是一个新的, 使用 Python 编写的支持插件的 QQBot**
+**GJ-FloraBot 是一个fork自FloraBot早期版本的QQBot, 移除了部分不必要的功能**
 ## 食用方法(面向小白)
 1. **Windows: 前往 [`Python官网`](https://www.python.org/downloads) 下载不低于 `Python3.11` 的版本进行安装, Linux: 运行命令**
 ```Shell
 apt install python3
 ```
-**可将 python3 改为一个指定的版本, 如作者喜欢用的 python3.11**  
-2. **点击右上角 About 左边的绿色的 `Code` 按钮, 再点击 `Download ZIP` 下载**  
-3. **用户解压后可删去 `PluginTemplate` 文件夹, 开发者可保留**  
-4. **如果是 Windows 用户, 在文件 `FloraBot.py` 的同级目录可创建一个文本文档, 内容为**  
-```Shell
+**可将 python3 改为一个指定的版本, 如FloraBot作者喜欢用的 python3.11**
+1. **点击右上角 About 左边的绿色的 `Code` 按钮, 再点击 `Download ZIP` 下载**  
+2. **用户解压后可删去 `PluginTemplate` 文件夹, 开发者可保留**  
+3. **如果是 Windows 用户, 在文件 `FloraBot.py` 的同级目录可创建一个文本文档, 内容为**  
+```Notepad
 python FloraBot.py
 ```
 **然后保存, 再重命名文件, 将后缀名 `.txt` 改为 `.bat`双击运行一下**  
@@ -19,7 +20,8 @@ python.exe的绝对路径 FloraBot.py
 ```
 **保存然后再运行**  
 **如果是 Linux 用户, 在文件 `FloraBot.py` 的同级目录可创建一个后缀名为 `.sh` 的文件, 内容为**  
-```Shell
+```Vim
+#!/bin/bash
 python3 FloraBot.py
 ```
 **使用 python3 命令不一定可以运行, 可改为一个指定的版本, 如 python3.11**  
@@ -34,11 +36,10 @@ pip install requests
 ```
 **使用 pip 命令不一定可以运行, 可尝试将 pip 换成 python3 -m pip**  
 **运行脚本**  
-5. **首次启动会启动失败, 此时会在文件 `FloraBot.py` 的同级目录下生成一个 `Config.json` 文件, 编辑它**  
+4. **首次启动会启动失败, 此时会在文件 `FloraBot.py` 的同级目录下生成一个 `Config.json` 文件, 编辑它**  
 **`Config.json`:**  
 ```Json
 {
-    "AutoInstallLibraries": true,
     "FloraHost": "127.0.0.1",
     "FloraPort": 3003,
     "FrameworkAddress": "127.0.0.1:3000",
@@ -47,14 +48,14 @@ pip install requests
 }
 ```
 **`Config.json` 文件键值对照表:**  
-* **`AutoInstallLibraries`: 是否自动安装 pip 安装所需的第三方库, 默认为: `true`**  
+* 此处移除原FloraBot的自动安装modules功能 
 * **`FloraHost`: Bot 监听的 IP 地址, 默认值为: `127.0.0.1`**  
 * **`FloraPort`: Bot 监听的端口号, 默认值为: `3003`**  
 **(PS: Bot 只支持 Http 协议, 请在 QQ 框架中将 Http 上报打开并且添加上报地址为: `http://FloraHost:FloraPort`)**  
 * **`FrameworkAddress`: QQ 框架的 Http 协议监听地址, 格式为: `IP地址:端口号`, 默认值为: `127.0.0.1:3000`**  
 * **`BotQQ`: 登录的 Bot 账号的 QQ 号, 默认值为 `0`**  
 * **`Administrator`: 管理员/所有者/主人的 QQ 号列表, 一些特殊的功能需要该账号的 QQ 号在此列表内才能够触发, 格式为: `[QQ号, QQ号, ...]`, 默认值为: `[0]`**  
-6. **再次启动, 不出意外的话, 已经可以正常使用了**  
+5. **再次启动, 不出意外的话, 已经可以正常使用了**  
 ## 框架配置
 **Bot 只支持 Http 协议, 框架需要把 Http 服务打开, 启用 Http 事件上报, 关闭 Http 心跳(一定要关, 不然会出现意想不到的 Bug), 然后在事件上报地址中添加 Bot 的监听地址, 如果有消息上报格式, 设置为 `CQ码` 即可**
 ## 添加插件
@@ -80,12 +81,20 @@ FloraBot.py
 ```
 ## 内置功能(与 Bot 账号私聊或在 Bot 加入的群聊中发送指令触发)
 **Bot 内置了一些功能(都需要账号的 QQ 号在 `Administrator` 列表内才能够触发):**  
-* **`/重载插件`: 重新加载插件, 若在 FloraBot 运行中添加/删除/修改了插件文件, 请发送该指令重新加载一下插件**  
-* **`/插件列表`: 发送该指令后 Bot 会自动发送当前已添加的所有插件的列表, 包括插件的状态等**  
-* **`/启用插件 + [空格] + 插件名`: 若插件被禁用了可启用插件, 插件名可使用 `/插件列表` 指令查询**  
-* **`/禁用插件 + [空格] + 插件名`: 若不想要该插件的功能了可禁用插件, 插件名可使用 `/插件列表` 指令查询**
-* **`/echo + [空格] + [内容]`: 让 Bot 复读一遍内容, 用于调试(Debug), 这个指令复读方式为回复**
-* **`/echo1 + [空格] + [内容]`: 与 `/echo` 功能是相同的, 只是复读方式不为回复**
+**这里去除了原命令的/开头, 统一使用指令的形式**  
+* **`reload`: 重新加载插件, 若在 FloraBot 运行中添加/删除/修改了插件文件, 请发送该指令重新加载一下插件**  
+* **`list`: 发送该指令后 Bot 会自动发送当前已添加的所有插件的列表, 包括插件的状态等**  
+* **`enable + [空格] + 插件名`: 若插件被禁用了可启用插件, 插件名可使用 `/插件列表` 指令查询**  
+* **`disable + [空格] + 插件名`: 若不想要该插件的功能了可禁用插件, 插件名可使用 `/插件列表` 指令查询**
+* **`echo + [空格] + [内容]`: 让 Bot 复读一遍内容, 用于调试(Debug), 这个指令复读方式为回复**
+* **`echo1 + [空格] + [内容]`: 与 `/echo` 功能是相同的, 只是复读方式不为回复**
+## GJ-FloraBot 新增功能
+* **`admin_help`: 管理员帮助, 发送该指令后, Bot 会发送管理员的帮助信息**  
+* **`ban + [空格] + [at] + [时间]`: 对某人进行禁言(Bot需要群管理权限, 时间单位为秒)**
+* **`unban + [空格] + [at]`: 解除某人禁言(Bot需要群管理权限)**
+* **`kick + [空格] + [at]`: 踢出某人(Bot需要群管理权限)**
+* **`del + [空格] + [插件名]`: 删除插件**
+* **`cmd + [空格] + [指令]`: 使运行程序的设备执行命令**
 ## 插件开发
 **要求:**  
 * **会 Python 的基础知识**  
@@ -97,7 +106,6 @@ FloraBot.py
 ```Json
 {
     "PluginName": "插件名",
-    "DependentLibraries": null,
     "IsLibraries": false,
     "PluginIcon": null,
     "PluginAuthor": "插件作者名",
@@ -108,7 +116,6 @@ FloraBot.py
 ```
 **`Plugin.json` 文件键值对照表:**  
 * **`PluginName`: 插件名**  
-* **`DependentLibraries`: 依赖的第三方库的名称, 若 `AutoInstallLibraries` 值为 `true` 则会尝试自动安装这些库, 格式为: `["库名", "库名", ...]`**  
 * **`IsLibraries`: 是否为依赖库插件**  
 * **`PluginIcon`: 插件的图标, 格式为: `xxx.png`(要带上后缀, 主流文件格式即可, 可以在文件夹下, 但是相对路径是从 `Plugin.json` 文件所在的目录开始的)**  
 * **`PluginAuthor`: 插件作者名**  
@@ -220,7 +227,6 @@ def event(data: dict):  # 事件函数,FloraBot每收到一个事件都会调用
 ### 作者
 * **[`AEBC08`](https://github.com/AEBC08)**
 * **BiliBili: [`AEBC08`](https://space.bilibili.com/510197857)**
-### 开发交流群
-* **QQ群: [`994825372`](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=ZkfLbEF4XRGK4Ts044mUdhpFZyn1PtE7&amp;authKey=jAdddExKGHv0ANYh%2BFU634S5SS7jbO6Gr8EJxXRKAVoE7Ue4HpHZdD8tnrOcUSeD&amp;noverify=0&amp;group_code=994825372)**
-### Tips
-* **Issues 大概率是不会看的, 建议 BiliBili 私信**
+* **[`gjyyds1`](https://github.com/gjyyds1)**
+* **QQ: 2712878343**
+* **如果有需要, 请遵循GPLv3协议**

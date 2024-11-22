@@ -298,11 +298,6 @@ def process():  # 消息处理函数,不要主动调用这个函数
                 send_msg(msg.replace("echo ", "", 1), uid, gid, mid)
             elif msg.startswith("echo1 "):
                 send_msg(msg.replace("echo1 ", "", 1), uid, gid)
-            elif msg.startswith("msg "):
-                send_msg(f"[消息调试]" + msg.replace("msg ", "", 1), uid, gid, mid)
-            elif msg == "stop":
-                send_msg("进程已终止", uid, gid, mid)
-                os.kill(os.getpid(), signal.SIGTERM)  # 关闭进程
             elif msg == "admin_help":
                 send_msg(f"admin菜单"
                          f"\n"
