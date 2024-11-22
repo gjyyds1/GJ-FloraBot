@@ -222,11 +222,13 @@ def event(data: dict):  # 事件函数,FloraBot每收到一个事件都会调用
 ```
 **上述代码发送图片时使用了 `FloraPath` 和 `ThePluginPath` 拼接了当前插件文件夹下的 Test.png 的绝对路径**  
 **注意!!!: 拼接路径请使用 `/` 而不是 `\` , 因为如果路径中出现了 `\` 则只能在 Windows 中使用, 而 `/` 则是全平台, Windows 支持使用 `/` 拼接路径**   
-### 推荐 QQ 框架
+### 原作者推荐的 QQ 框架
 * **[NapNeko/NapCatQQ](https://github.com/NapNeko/NapCatQQ)**
+### GJ推荐框架
+* **[LLOneBot](https://github.com/LLOneBot/LLOneBot)**
 ### 作者
 * **[`AEBC08`](https://github.com/AEBC08)**
 * **BiliBili: [`AEBC08`](https://space.bilibili.com/510197857)**
 * **[`gjyyds1`](https://github.com/gjyyds1)**
-* **QQ: 2712878343**
+* **gjyyds1的QQ: 2712878343**
 * **如果有需要, 请遵循GPLv3协议**
