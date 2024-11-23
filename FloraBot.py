@@ -7,8 +7,6 @@ import os
 import platform
 import re
 import signal
-import subprocess
-import sys
 import threading
 
 import requests
@@ -205,6 +203,14 @@ flora_api = {"FloraPath": os.path.dirname(os.path.abspath(__file__)), "FloraHost
              "FrameworkAddress": framework_address, "BotQQ": bot_qq, "Administrator": administrator,
              "FloraVersion": flora_version, "FloraServer": flora_server, "UpdateFloraApi": update_flora_api,
              "LoadPlugins": load_plugins, "SendMsg": send_msg}
+
+
+def sm(msg: str):
+    data = request.get_json()  # 获取提交数据
+    uid = data.get("user_id")
+    gid = data.get("group_id")
+    mid = data.get("message_id")
+    send_msg(msg, uid, gid, mid)
 
 
 @flora_server.post("/")

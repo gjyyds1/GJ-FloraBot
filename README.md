@@ -221,7 +221,7 @@ def event(data: dict):  # 事件函数,FloraBot每收到一个事件都会调用
             send_msg(f"[CQ:image,file=file:///{flora_api.get('FloraPath')}/{flora_api.get('ThePluginPath')}/Test.png]", uid, gid, mid)
 ```
 **上述代码发送图片时使用了 `FloraPath` 和 `ThePluginPath` 拼接了当前插件文件夹下的 Test.png 的绝对路径**  
-**注意!!!: 拼接路径请使用 `/` 而不是 `\` , 因为如果路径中出现了 `\` 则只能在 Windows 中使用, 而 `/` 则是全平台, Windows 支持使用 `/` 拼接路径**   
+**注意!!!: 拼接路径请使用 `/` 而不是 `\`, 因为 `\` 在 Python 里是转义字符, 所以请使用 `/` 来拼接路径(如果必须使用 `\` 请使用 `\\` `)**   
 ### 原作者推荐的 QQ 框架
 * **[NapNeko/NapCatQQ](https://github.com/NapNeko/NapCatQQ)**
 ### GJ推荐框架
